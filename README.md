@@ -1,179 +1,57 @@
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md)
 
-# 多端德州扑克大厅、俱乐部与赛事系统| 德州扑克源码 |德州金币大厅
+# 德州扑克完整源码：金币大厅、MTT/SNG 与 C++ 牌桌服务
 
-**德州扑克源码** · **德州扑克游戏源码** · **德州金币大厅源码** · **德州俱乐部源码**  
-**Unity3D + C++ | 金币大厅 + 俱乐部 + MTT锦标赛 + 多语言 | 支持iOS/Android/H5**
+面向 **德州扑克源码、德州源码、德州金币大厅源码、德州俱乐部源码、Texas Holdem source code** 的多端项目资料。真实界面覆盖扑克大厅、经典德州、AOF、短牌入口、MTT 多桌锦标赛、SNG、活动与牌桌操作；公开代码可核验 C++ 玩家/房间状态、大小盲、下注池、公牌、保险、牌谱、计时器、Tars GM 服务、MySQL 配置，以及 Unity/Lua 工具资源。
 
+> 公开仓库是源码与资源集合。完整编译仍依赖仓库外的协议、框架、服务、配置与资源；上线范围应以实际交付清单和测试结果为准。
 
-一款功能完整的德州扑克在线游戏源码。包含金币大厅、俱乐部系统、多种玩法（经典德州、短牌等）、MTT/SNG锦标赛、商城、充值、排行榜等模块。适合二次开发、商用部署或搭建自己的德州扑克平台。
+## 产品功能与玩法
 
+| 模块 | 玩家体验 | 仓库/截图依据 |
+|---|---|---|
+| 多模式大厅 | 经典德州、AOF、6+ 短牌、排位、私人房和赛事入口 | `Screenshots/大厅.png` |
+| 经典牌桌 | 盲注、买入、座位、下注、跟注、加注、弃牌与公共牌 | `context.*`、`user.*`、牌桌截图 |
+| MTT 锦标赛 | 多桌赛事列表、报名状态与倒计时 | MTT 产品截图、比赛配置结构 |
+| SNG | 不同买入与奖励档位的 Sit & Go 赛事入口 | SNG 产品截图 |
+| 局内记录 | 玩家信息、下注池、牌谱步骤、收藏与结算数据 | `context.*` |
+| 活动呈现 | 活动入口、奖励进度和大厅运营界面 | 活动产品截图 |
 
-[立即联系获取在线演示](#联系我们)
+## 德州扑克流程
 
+玩家从大厅选择模式和房间，确认盲注或赛事报名条件后入座。牌局依次经历发底牌、翻牌前下注、翻牌、转牌、河牌和摊牌；玩家可根据行动顺序选择过牌、下注、跟注、加注或弃牌。MTT/SNG 还需要报名、开赛、升盲、桌间平衡和名次结算流程。
 
-[![Contact](https://img.shields.io/badge/联系-TG%3A%40xuzongbin001-blue)](https://t.me/xuzongbin001)
-[![Platform](https://img.shields.io/badge/平台-iOS%20%7C%20Android%20%7C%20H5-green)]()
-[![Language](https://img.shields.io/badge/服务端-C%2B%2B-red)]()
-[![AI](https://img.shields.io/badge/AI-德州AI-orange)]()
+## 真实产品截图
 
+| 大厅与模式 | 牌桌与赛事 |
+|---|---|
+| ![德州扑克金币大厅与模式入口](docs/assets/images/poker-lobby.png) | ![经典德州扑克房间配置](docs/assets/images/classic-holdem.jpg) |
+| ![德州扑克 MTT 多桌锦标赛](docs/assets/images/mtt-tournament.jpg) | ![德州扑克 SNG 赛事](docs/assets/images/sng-tournament.jpg) |
+| ![德州扑克活动中心](docs/assets/images/events.png) | ![德州牌桌下注与公共牌](docs/assets/images/table-win.png) |
+| ![多人德州牌桌与荷官](docs/assets/images/dealer-table.png) | |
 
----
+## 技术结构
 
+- **牌桌状态：** 玩家、座位、大小盲、底牌、公牌、下注池、等待队列与游戏详情。
+- **流程计时：** 开始/结束计时器、操作时间和客户端计时广播。
+- **服务接口：** C++ 游戏服务、GMServer、Tars servant 与外部工厂入口。
+- **数据层：** MySQL 操作与比赛基础配置结构。
+- **客户端资源：** Unity prefab 与 Lua 网络、资源、音频、卡牌和俱乐部工具。
 
-## ✨ 核心特性
+## 构建与二次开发
 
+`makefile` 引用了多个仓库外的 Tars/XGame 协议和服务模块。构建前需补齐依赖、数据库结构、服务配置和客户端工程，并对下注边界、边池、全下、断线重连、牌型比较、结算与赛事流程建立测试。
 
-- **金币大厅系统**：完整经济系统、充值、消费、奖励
-- **多种玩法**：经典德州扑克、短牌、SNG、MTT多桌锦标赛
-- **俱乐部与社交系统**：俱乐部创建、管理、朋友局、私房
-- **商城与运营系统**：签到、道具商城、任务系统
-- **战绩与排名**：详细统计、赛季排行榜
-- **多平台支持**：Unity3D 客户端（iOS / Android / H5 / PC）
-- **服务端**：C++ 高性能后端
+## 在线图文文档
 
+- [简体中文](https://masterai-top.github.io/Texas-Holdem-Poker-Complete-Source-Code/zh-cn/)
+- [繁體中文](https://masterai-top.github.io/Texas-Holdem-Poker-Complete-Source-Code/zh-tw/)
+- [English](https://masterai-top.github.io/Texas-Holdem-Poker-Complete-Source-Code/en/)
 
-## 🎥 产品演示视频（强烈推荐观看）
+## 联系与项目核验
 
+- Telegram：[@xuzongbin001](https://t.me/xuzongbin001)
+- Email：[masterai918@gmail.com](mailto:masterai918@gmail.com)
 
-[![德州扑克完整功能演示](https://img.youtube.com/vi/iuFM8RJGU8s/hqdefault.jpg)](https://youtu.be/iuFM8RJGU8s)
+联系时请说明需要核验的客户端、服务端、数据库、赛事或部署范围。
 
-
-**点击上方图片跳转观看视频**  
-德州扑克完整功能演示 | 金币大厅 + 俱乐部 + MTT锦标赛 + 实时对战
-
-
-## 🎯 功能清单
-✅ 德州AI陪玩 ✅ 金币大厅 ✅ 俱乐部系统
-✅ 多国语言 ✅ 用户系统 ✅ 房间管理
-✅ 商城系统 ✅ 充值系统 ✅ 排行榜
-✅ 任务系统 ✅ 签到系统 ✅ 战绩统计
-
-
-## 📸 游戏界面真实截图 / Screenshots
-
-
-![金币大厅](Screenshots/大厅.png)  
-**金币大厅界面 | Gold Coin Hall**
-
-
-![经典德州](Screenshots/经典德州.jpg)  
-**经典德州牌桌界面 | Classic Texas Hold'em**
-
-
-![多桌锦标赛](Screenshots/多座竞标赛.jpg)  
-**多桌锦标赛界面 | Multi-Table Tournament**
-
-
-![SNG竞赛](Screenshots/sng.jpg)  
-**SNG竞赛界面 | Sit & Go**
-
-
-![活动中心](Screenshots/活动.png)  
-**活动中心界面 | Events**
-
-
-![牌桌胜利提示](Screenshots/牌桌-胜利提示.png)  
-**牌桌胜利提示界面 | Win Notification**
-
-
-![荷官打赏](Screenshots/荷官打赏.png)  
-**荷官打赏界面 | Dealer Tip**
-
-
-🎥 **演示视频**：[联系我获取在线演示](https://t.me/xuzongbin001)
-
-
-## 💰 下载源码
-
-
-✅ 完整C++服务端源码  
-✅ 完整Unity3D客户端源码  
-✅ 数据库脚本  
-✅ 美术资源  
-✅ 部署文档  
-
-
-## 🛠 技术栈
-
-
-- 客户端：Unity3D (C#)
-- 服务端：C++
-- 数据库：MySQL + Redis
-- 支持平台：iOS、Android、H5、PC
-
-
-## 📜 许可与授权
-
-
-本仓库为展示版本，仅供学习研究参考。  
-
-
-
-## 📞 联系我们
-
-
-- **Telegram**：@xuzongbin001  
-- **Email**：masterai918@gmail.com
-
-
-
-
-🎯 Use Cases
-AI research
-Game simulation
-Reinforcement learning experiments
-📊 Why This Project
-
-
-Compared to typical poker source code:
-
-
-Focus on AI modeling
-Clean architecture
-Simulation-ready
-⚠️ Disclaimer
-For research and educational purposes only
-No real-money or gambling features
-## 🧠 AI Overview
-
-
-This project models decision-making in complex environments:
-
-
-- Imperfect-information games  
-- Multi-agent interaction  
-- Strategy optimization  
-
-
----
-
-
-## ⚙️ Key Features
-
-
-- Poker AI decision engine  
-- Simulation environment  
-- Strategy evaluation system  
-- Modular architecture  
-
-
----
-
-
-## 🚀 Quick Start
-
-
-```bash
-git clone https://github.com/your-repo
-cd project
-run main
-```
-
-⭐ Star 这个仓库，支持优质德州源码持续分享！
-
-
-## 🔍 Keywords
-
-
-Texas Holdem AI, Poker AI Engine, Multiplayer Poker System, Poker Game Server, C++ Poker Engine, Poker Simulation
